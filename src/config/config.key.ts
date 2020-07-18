@@ -4,5 +4,6 @@ export enum Configuration {
     USERNAME = "USERNAME",
     PASSWORD = "PASSWORD",
     DATABASE = "DATABASE",
-    JWT_SECRET = "JWT_SECRET" 
+    DB_PORT = "DB_PORT",
+    JWT_SECRET = "JWT_SECRET"
 }
