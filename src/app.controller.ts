@@ -1,6 +1,5 @@
 import { Controller, Get } from '@nestjs/common';
 import { AppService } from './app.service';
-//import {  } from 'express'
 
 @Controller()
 export class AppController {
