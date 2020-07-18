@@ -2,7 +2,7 @@ import { TypeOrmModule } from '@nestjs/typeorm'
 import { ConfigModule } from '../config/config.module'
 import { ConfigService } from '../config/config.service'
 import { ConnectionOptions } from 'typeorm'
-import { Configuration } from 'src/config/config.key'
+import { Configuration } from '../config/config.key'
 
 export const databaseProvider = [
     TypeOrmModule.forRootAsync({
@@ -11,7 +11,7 @@ export const databaseProvider = [
         async useFactory(config: ConfigService) {
             return {
                 type: 'postgres',
-                port: 5444,
+                port: Number(config.get(Configuration.DB_PORT)),
                 host: config.get(Configuration.HOST),
                 database: config.get(Configuration.DATABASE),
                 username: config.get(Configuration.USERNAME),
