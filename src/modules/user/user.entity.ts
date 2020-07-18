@@ -20,9 +20,9 @@ export class User extends BaseEntity {
     @JoinColumn({ name: 'detail_id' })
     details: UserDetails;
 
-    @ManyToMany(type => Role, role => role.users)
+    @ManyToMany(type => Role, role => role.users, { eager: true })
     @JoinTable({ name: 'user_roles' })
-    roles: Role[]
+    roles: Role[];
 
     @Column({ type: 'varchar', default: 'ACTIVE', length: 8 })
     status: string;
