@@ -1,4 +1,4 @@
-import { Injectable, ConflictException, NotFoundException } from '@nestjs/common';
+import { Injectable, ConflictException, NotFoundException, BadRequestException } from '@nestjs/common';
 import { AuthRepository } from './auth.repository';
 import { InjectRepository } from '@nestjs/typeorm';
 import { JwtService } from '@nestjs/jwt';
@@ -23,7 +23,7 @@ export class AuthService {
             throw new ConflictException("username or email already exist")
 
         }
-        return this._authRepository.signup(signupDto)
+        return await this._authRepository.signup(signupDto)
     }
 
     async signin(signinDto: SigninDto): Promise<{ token: string }> {
@@ -35,7 +35,7 @@ export class AuthService {
         const isMatch = await compare(password, user.password)
 
         if (!isMatch) {
-            throw new NotFoundException("email or password incorrect")
+            throw new BadRequestException("email or password incorrect")
         }
 
         const payload: IJwtPayload = {
