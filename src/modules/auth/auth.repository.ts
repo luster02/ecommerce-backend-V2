@@ -1,6 +1,6 @@
 import { Repository, EntityRepository, getConnection } from "typeorm";
 import { User } from "../user/user.entity";
-import { SigninDto, SignupDto } from "./dto";
+import { SignupDto } from "./dto";
 import { RoleRepository } from "../role/role.repository";
 import { Role } from "../role/role.entity";
 import { RoleType } from "../role/roletypes.enum";
@@ -11,9 +11,8 @@ import { genSalt, hash } from "bcryptjs";
 export class AuthRepository extends Repository<User> {
 
     async signup(signupDto: SignupDto) {
-        const { username, password, email } = signupDto
+        const { password, email } = signupDto
         const user = new User()
-        user.username = username
         user.email = email
 
         const roleRepository: RoleRepository = getConnection().getRepository(Role)
