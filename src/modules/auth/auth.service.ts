@@ -1,10 +1,10 @@
 import { Injectable, ConflictException, NotFoundException, BadRequestException } from '@nestjs/common';
-import { AuthRepository } from './auth.repository';
 import { InjectRepository } from '@nestjs/typeorm';
 import { JwtService } from '@nestjs/jwt';
+import { compare } from 'bcryptjs';
+import { AuthRepository } from './auth.repository';
 import { SignupDto, SigninDto } from './dto';
 import { User } from '../user/user.entity';
-import { compare } from 'bcryptjs';
 import { IJwtPayload } from './jwt-payload.interface';
 import { RoleType } from '../role/roletypes.enum';
 
@@ -17,18 +17,17 @@ export class AuthService {
     ) { }
 
     async signup(signupDto: SignupDto): Promise<void> {
-        const { username, email } = signupDto
-        const userExist = await this._authRepository.findOne({ where: [{ username }, { email }] })
+        const { email } = signupDto
+        const userExist = await this._authRepository.findOne({ where: [{ email }] })
         if (userExist) {
             throw new ConflictException("username or email already exist")
-
         }
         return await this._authRepository.signup(signupDto)
     }
 
     async signin(signinDto: SigninDto): Promise<{ token: string }> {
-        const { username, password } = signinDto
-        const user: User = await this._authRepository.findOne({ where: { username } })
+        const { email, password } = signinDto
+        const user: User = await this._authRepository.findOne({ where: { email } })
         if (!user) {
             throw new NotFoundException("email or password incorrect")
         }
@@ -41,7 +40,6 @@ export class AuthService {
         const payload: IJwtPayload = {
             id: user.id,
             email: user.email,
-            username: user.username,
             role: user.roles.map(r => r.name as RoleType)
         }
 
