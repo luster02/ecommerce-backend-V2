@@ -4,9 +4,10 @@ import { UserRepository } from './user.repositry';
 import { UserService } from './user.service';
 import { SharedModule } from '../../shared/shared.module';
 import { UserController } from './user.controller';
+import { UserDetailRepositry } from './user.detail.repository';
 
 @Module({
-    imports: [TypeOrmModule.forFeature([UserRepository]), SharedModule],
+    imports: [TypeOrmModule.forFeature([UserRepository, UserDetailRepositry]), SharedModule],
     providers: [UserService],
     controllers: [UserController]
 })
