@@ -1,4 +1,13 @@
-import { BaseEntity, Entity, PrimaryGeneratedColumn, Column, ManyToMany, JoinColumn, CreateDateColumn, UpdateDateColumn } from "typeorm";
+import {
+    BaseEntity,
+    Entity,
+    PrimaryGeneratedColumn,
+    Column,
+    ManyToMany,
+    JoinColumn,
+    CreateDateColumn,
+    UpdateDateColumn
+} from "typeorm";
 import { User } from "../user/user.entity";
 
 @Entity('roles')

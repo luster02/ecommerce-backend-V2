@@ -1,6 +1,5 @@
 import { Controller, Get, Param, Post, Body, Delete, ParseIntPipe, Patch, HttpCode } from '@nestjs/common';
 import { UserService } from './user.service';
-import { User } from './user.entity';
 import { UserDetails } from './user.detail.entity';
 import { CustomResponse } from '../../interfaces/Response.interface';
 

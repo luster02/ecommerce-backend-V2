@@ -1,4 +1,4 @@
-import { Controller, Get, Param, Post, Body, Delete, ParseIntPipe, HttpCode } from '@nestjs/common';
+import { Controller, Get, Param, Post, Body, Delete, ParseIntPipe, HttpCode, Patch } from '@nestjs/common';
 import { RoleService } from './role.service';
 import { Role } from './role.entity';
 import { CustomResponse } from 'src/interfaces/Response.interface';
@@ -28,8 +28,8 @@ export class RoleController {
         return { ok: true, data: role }
     }
 
-    @Post(':id')
-    @HttpCode(201)
+    @Patch(':id')
+    @HttpCode(200)
     async editRole(@Param('id', ParseIntPipe) id: number, @Body() body: Role): Promise<CustomResponse> {
         await this._roleService.update(id, body)
         return { ok: true, data: 'updated' }

@@ -1,6 +1,17 @@
-import { BaseEntity, Entity, PrimaryGeneratedColumn, Column, OneToOne, JoinColumn, ManyToMany, JoinTable, CreateDateColumn, UpdateDateColumn } from 'typeorm'
+import {
+    BaseEntity,
+    Entity,
+    PrimaryGeneratedColumn,
+    Column,
+    OneToOne,
+    ManyToMany,
+    JoinTable,
+    CreateDateColumn,
+    UpdateDateColumn
+} from 'typeorm'
 import { UserDetails } from './user.detail.entity'
 import { Role } from '../role/role.entity';
+import { Shop } from '../shop/shop.entity';
 
 @Entity('users')
 export class User extends BaseEntity {
@@ -15,6 +26,9 @@ export class User extends BaseEntity {
 
     @OneToOne(type => UserDetails, userDetails => userDetails.user, { cascade: true, nullable: false, eager: true, onDelete: 'CASCADE' })
     details: UserDetails;
+
+    @OneToOne(type => Shop, shop => shop.user, {cascade: true, eager: true, onDelete: 'CASCADE'})
+    shop: Shop
 
     @ManyToMany(type => Role, role => role.users, { eager: true, onDelete: 'CASCADE' })
     @JoinTable({ name: 'user_roles' })

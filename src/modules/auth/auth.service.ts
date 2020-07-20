@@ -19,23 +19,16 @@ export class AuthService {
     async signup(signupDto: SignupDto): Promise<void> {
         const { email } = signupDto
         const userExist = await this._authRepository.findOne({ where: [{ email }] })
-        if (userExist) {
-            throw new ConflictException("username or email already exist")
-        }
+        if (userExist) throw new ConflictException("username or email already exist");
         return await this._authRepository.signup(signupDto)
     }
 
     async signin(signinDto: SigninDto): Promise<{ token: string }> {
         const { email, password } = signinDto
         const user: User = await this._authRepository.findOne({ where: { email } })
-        if (!user) {
-            throw new NotFoundException("email or password incorrect")
-        }
+        if (!user) throw new NotFoundException("email or password incorrect");
         const isMatch = await compare(password, user.password)
-
-        if (!isMatch) {
-            throw new BadRequestException("email or password incorrect")
-        }
+        if (!isMatch) throw new BadRequestException("email or password incorrect");
 
         const payload: IJwtPayload = {
             id: user.id,
