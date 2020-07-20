@@ -10,7 +10,7 @@ export const databaseProvider = [
         inject: [ConfigService],
         async useFactory(config: ConfigService) {
             return {
-                type: 'postgres',
+                type: config.get(Configuration.BD_ENGINE),
                 port: Number(config.get(Configuration.DB_PORT)),
                 host: config.get(Configuration.HOST),
                 database: config.get(Configuration.DATABASE),
