@@ -6,6 +6,7 @@ import { Role } from "../role/role.entity";
 import { RoleType } from "../role/roletypes.enum";
 import { UserDetails } from "../user/user.detail.entity";
 import { genSalt, hash } from "bcryptjs";
+import { Shop } from "../shop/shop.entity";
 
 @EntityRepository(User)
 export class AuthRepository extends Repository<User> {
@@ -21,6 +22,9 @@ export class AuthRepository extends Repository<User> {
 
         const details = new UserDetails()
         user.details = details
+
+        const shop = new Shop()
+        user.shop = shop
 
         const salt = await genSalt(10)
         user.password = await hash(password, salt)
