@@ -12,6 +12,7 @@ import {
 import { UserDetails } from './user.detail.entity'
 import { Role } from '../role/role.entity';
 import { Shop } from '../shop/shop.entity';
+import { Gallery } from '../gallery/gallery.entity';
 
 @Entity('users')
 export class User extends BaseEntity {
@@ -27,7 +28,10 @@ export class User extends BaseEntity {
     @OneToOne(type => UserDetails, userDetails => userDetails.user, { cascade: true, nullable: false, eager: true, onDelete: 'CASCADE' })
     details: UserDetails;
 
-    @OneToOne(type => Shop, shop => shop.user, {cascade: true, eager: true, onDelete: 'CASCADE'})
+    @OneToOne(type => Gallery, gallery => gallery.user, { cascade: true, eager: true, onDelete: 'CASCADE' })
+    gallery: Gallery
+
+    @OneToOne(type => Shop, shop => shop.user, { cascade: true, eager: true, onDelete: 'CASCADE' })
     shop: Shop
 
     @ManyToMany(type => Role, role => role.users, { eager: true, onDelete: 'CASCADE' })
