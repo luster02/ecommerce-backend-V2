@@ -8,9 +8,12 @@ import { RoleModule } from './modules/role/role.module';
 import { AuthModule } from './modules/auth/auth.module';
 import { ShopModule } from './modules/shop/shop.module';
 import { ProductsModule } from './modules/products/products.module';
+import { GalleryModule } from './modules/gallery/gallery.module';
+import { AssetModule } from './modules/asset/asset.module';
+import { CloudinaryModule } from './cloudinary/cloudinary.module';
 
 @Module({
-  imports: [ConfigModule, DatabaseModule, UserModule, RoleModule, AuthModule, ShopModule, ProductsModule],
+  imports: [ConfigModule, DatabaseModule, UserModule, RoleModule, AuthModule, ShopModule, ProductsModule, GalleryModule, AssetModule, CloudinaryModule],
   controllers: [],
   providers: [],
 })
