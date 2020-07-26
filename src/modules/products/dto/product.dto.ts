@@ -15,4 +15,6 @@ export class ProductDto {
     category: string
 
     shop: any
+
+    assets: any
 }
