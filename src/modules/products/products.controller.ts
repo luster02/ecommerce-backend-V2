@@ -1,7 +1,13 @@
-import { Controller, Get, HttpCode, Param, ParseIntPipe, Post, Body, UsePipes, ValidationPipe, Patch, Delete } from '@nestjs/common';
+import {
+    Controller, Get, HttpCode,
+    Param, ParseIntPipe, Post,
+    Body, UsePipes, ValidationPipe,
+    Patch, Delete
+} from '@nestjs/common';
 import { ProductService } from './products.service';
 import { CustomResponse } from 'src/interfaces/Response.interface';
 import { ProductDto } from './dto/product.dto';
+import { Product } from './product.entity';
 
 @Controller('products')
 export class ProductsController {
@@ -31,9 +37,23 @@ export class ProductsController {
 
     @Patch(':id')
     @HttpCode(200)
-    async editProduct(@Param('id', ParseIntPipe) id: number, @Body() productDto: ProductDto): Promise<CustomResponse> {
-        await this._productService.update(id, productDto)
+    async editProduct(@Param('id', ParseIntPipe) id: number, @Body() productData: Product): Promise<CustomResponse> {
+        await this._productService.update(id, productData)
         return { ok: true, data: 'updated' }
+    }
+
+    @Patch('/push/:id')
+    @HttpCode(200)
+    async pushAssets(@Param('id', ParseIntPipe) id: number, @Body() assets: any): Promise<CustomResponse> {
+        await this._productService.pushAssets(id, assets)
+        return { ok: true, data: 'pushed' }
+    }
+
+    @Patch('/pull/:id')
+    @HttpCode(200)
+    async pullAssets(@Param('id', ParseIntPipe) id: number, @Body() assets: any): Promise<CustomResponse> {
+        await this._productService.pullAssets(id, assets)
+        return { ok: true, data: 'pulled' }
     }
 
     @Delete(':id')
