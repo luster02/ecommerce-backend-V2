@@ -3,7 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { ShopRepository } from './shop.repository'
 import { Shop } from './shop.entity';
 import { ShopDto } from './dto/shop.dto';
-import { StatusType } from 'src/shared/statustype.enum';
+import { StatusType } from '../../shared/statustype.enum';
 
 @Injectable()
 export class ShopService {
