@@ -6,8 +6,11 @@ import {
     CreateDateColumn,
     UpdateDateColumn,
     ManyToOne,
+    ManyToMany,
+    JoinTable,
 } from 'typeorm'
 import { Shop } from '../shop/shop.entity';
+import { Asset } from '../asset/asset.entity';
 
 @Entity('products')
 export class Product extends BaseEntity {
@@ -34,4 +37,8 @@ export class Product extends BaseEntity {
 
     @ManyToOne(type => Shop, shop => shop.products, { onDelete: 'CASCADE' })
     shop: Shop
+
+    @ManyToMany(type => Asset, asset => asset.product, { onDelete: 'CASCADE', eager: true, cascade: true })
+    @JoinTable({ name: 'product_assets' })
+    assets: Asset[]
 }
