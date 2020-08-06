@@ -11,6 +11,7 @@ import {
 } from 'typeorm'
 import { Shop } from '../shop/shop.entity';
 import { Asset } from '../asset/asset.entity';
+import { Cart } from '../cart/cart.entity';
 
 @Entity('products')
 export class Product extends BaseEntity {
@@ -41,4 +42,7 @@ export class Product extends BaseEntity {
     @ManyToMany(type => Asset, asset => asset.product, { onDelete: 'CASCADE', eager: true, cascade: true })
     @JoinTable({ name: 'product_assets' })
     assets: Asset[]
+
+    @ManyToMany(type => Cart, cart => cart.products, { onDelete: 'CASCADE' })
+    cart: Cart
 }
