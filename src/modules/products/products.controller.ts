@@ -8,7 +8,9 @@ import { ProductService } from './products.service';
 import { CustomResponse } from 'src/interfaces/Response.interface';
 import { ProductDto } from './dto/product.dto';
 import { Product } from './product.entity';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('products')
 @Controller('products')
 export class ProductsController {
     constructor(private readonly _productService: ProductService) { }

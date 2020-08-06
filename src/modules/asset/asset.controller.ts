@@ -8,7 +8,9 @@ import { FileInterceptor } from '@nestjs/platform-express'
 import { AssetService } from './asset.service';
 import { CustomResponse } from 'src/interfaces/Response.interface';
 import { multerOptions } from '../../shared/multer.storage'
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('asset')
 @Controller('asset')
 export class AssetController {
     constructor(private readonly _assetService: AssetService) { }

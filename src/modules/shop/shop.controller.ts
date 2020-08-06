@@ -2,7 +2,9 @@ import { Controller, Get, HttpCode, Param, ParseIntPipe, Patch, Body, Delete } f
 import { ShopService } from './shop.service';
 import { CustomResponse } from 'src/interfaces/Response.interface';
 import { Shop } from './shop.entity';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('shop')
 @Controller('shops')
 export class ShopController {
     constructor(private readonly _shopService: ShopService) { }

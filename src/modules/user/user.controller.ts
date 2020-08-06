@@ -1,8 +1,14 @@
-import { Controller, Get, Param, Post, Body, Delete, ParseIntPipe, Patch, HttpCode } from '@nestjs/common';
+import {
+    Controller, Get, Param,
+    Body, Delete, ParseIntPipe,
+    Patch, HttpCode,
+} from '@nestjs/common';
 import { UserService } from './user.service';
 import { UserDetails } from './user.detail.entity';
 import { CustomResponse } from '../../interfaces/Response.interface';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('user')
 @Controller('users')
 export class UserController {
     constructor(private readonly _userService: UserService) { }

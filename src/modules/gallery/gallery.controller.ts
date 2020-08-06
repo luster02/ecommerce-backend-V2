@@ -6,7 +6,9 @@ import {
 import { GalleryService } from './gallery.service'
 import { CustomResponse } from 'src/interfaces/Response.interface';
 import { GalleryDto } from './dto/gallery.dto';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('gallery')
 @Controller('gallery')
 export class GalleryController {
     constructor(private readonly _galleryService: GalleryService) { }
