@@ -5,10 +5,10 @@ import { JwtModule } from '@nestjs/jwt'
 import { AuthController } from './auth.controller';
 import { AuthService } from './auth.service';
 import { AuthRepository } from './auth.repository'
-import { ConfigService } from '../../config/config.service';
+import { ConfigService } from '../../../config/config.service';
 import { JwtStrategy } from './strategies/jwt.strategy'
-import { ConfigModule } from '../../config/config.module';
-import { Configuration } from '../../config/config.key';
+import { ConfigModule } from '../../../config/config.module';
+import { Configuration } from '../../../config/config.key';
 
 @Module({
   imports: [

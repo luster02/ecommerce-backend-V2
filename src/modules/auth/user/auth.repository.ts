@@ -1,12 +1,12 @@
 import { Repository, EntityRepository, getConnection } from "typeorm";
 import { genSalt, hash } from "bcryptjs";
-import { RoleRepository } from "../role/role.repository";
-import { RoleType } from "../role/roletypes.enum";
-import { UserDetails } from "../user/user.detail.entity";
-import { Gallery } from "../gallery/gallery.entity";
-import { Role } from "../role/role.entity";
-import { User } from "../user/user.entity";
-import { Shop } from "../shop/shop.entity";
+import { RoleRepository } from "../../role/role.repository";
+import { RoleType } from "../../role/roletypes.enum";
+import { UserDetails } from "../../user/user.detail.entity";
+import { Gallery } from "../../gallery/gallery.entity";
+import { Role } from "../../role/role.entity";
+import { User } from "../../user/user.entity";
+import { Shop } from "../../shop/shop.entity";
 import { SignupDto } from "./dto";
 
 @EntityRepository(User)

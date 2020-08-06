@@ -4,9 +4,9 @@ import { JwtService } from '@nestjs/jwt';
 import { compare } from 'bcryptjs';
 import { AuthRepository } from './auth.repository';
 import { SignupDto, SigninDto } from './dto';
-import { User } from '../user/user.entity';
+import { User } from '../../user/user.entity';
 import { IJwtPayload } from './jwt-payload.interface';
-import { RoleType } from '../role/roletypes.enum';
+import { RoleType } from '../../role/roletypes.enum';
 
 @Injectable()
 export class AuthService {
